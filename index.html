@@ -81,9 +81,12 @@ FECHADOS / DECISÕES REGISTRADAS
     Isaac. Registro: na checagem do mesmo dia a bio do Instagram não exibia
     mais a frase; a confirmação é do Isaac, não da bio.
 D1. Posicionamento do hero trocado em 05/09/2026: sai "De mãe para mães",
-    entra "Cirurgia plástica número 1 das empresárias". Decisão do cliente,
+    entra "Cirurgiã plástica número 1 das empresárias". Decisão do cliente,
     com aval do Isaac. A frase é redação da própria Dra. Pamela (bio do
     Instagram) — não é dado nosso. O superlativo é responsabilidade dela.
+    CORREÇÃO em 05/09/2026, a pedido do Isaac: a frase estava como "Cirurgia
+    plástica número 1 das empresárias" e passou a "Cirurgiã" — o sujeito é
+    ela, não o procedimento. Alteração gramatical, não de posicionamento.
 
 Observação: em 05/09/2026 todos os arquivos referenciados passaram a existir
 em assets/ (fotos de estúdio, logo extraído do PDF oficial, sete proc-*.jpg e
@@ -658,7 +661,7 @@ body.sheet-open{position:fixed;left:0;right:0;overflow:hidden}
     <!-- Posicionamento trocado em 05/09/2026: decisão do cliente, com aval do
          Isaac. A frase é redação da própria Dra. Pamela (bio do Instagram) —
          não é dado nosso. -->
-    <p class="hero-position">Cirurgia plástica número 1 das empresárias</p>
+    <p class="hero-position">Cirurgiã plástica número 1 das empresárias</p>
 
     <a class="btn btn-primary" id="cta-hero" href="#" data-wa-msg="Olá! Vim pelo link da bio e gostaria de agendar uma consulta com a Dra. Pamela.">Falar no WhatsApp</a>
   </div>
@@ -927,14 +930,15 @@ const PROC_TONE = {
    O set fica vazio e disponível para foto futura com fundo #000000 real. */
 const PROC_IMG_BLEND = new Set([]);
 
-/* Foto usada apenas DENTRO do sheet, não no card.
-   O amarelo manteiga do blazer só pode existir dentro desta foto. */
-const SHEET_IMG = {
-  "protese-r24r": {
-    src: "assets/pamela-implante.jpg",
-    alt: "Dra. Pamela Massuia segurando um implante de silicone diante de um olho"
-  }
-};
+/* Fotos usadas apenas DENTRO do sheet, não no card.
+   REMOVIDO em 05/09/2026 a pedido do Isaac: a foto dela com o implante
+   (assets/pamela-implante.jpg) saiu do sheet de "Prótese de mama R24R" —
+   avaliação dele de que a foto não cabe ali. O arquivo continua em assets/,
+   sem referência. O sheet agora abre direto no texto; o card do carrossel
+   não muda, segue com proc-protese-r24r.jpg.
+   Se alguma foto voltar a entrar aqui: o amarelo manteiga do blazer só pode
+   existir dentro da foto, nunca no sistema de cor da página. */
+const SHEET_IMG = {};
 
 /* Textos aguardando aval médico — usar literalmente, não reescrever (pendência 6). */
 const PROCEDIMENTOS = [
