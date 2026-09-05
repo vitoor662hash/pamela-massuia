@@ -102,6 +102,16 @@ D2. Tipografia trocada em 05/09/2026: sai Fraunces + Manrope, entra
     A escala de corpos ficou intacta de propósito: foi nela que a comparação
     aconteceu.
 
+D3b. Destaque do posicionamento em 05/09/2026: a frase do hero passou a ser
+    exibida em caixa alta, com entreletra e entre dois filetes champanhe
+    (opção "B" da página temporária destaque.html). Decisão do Isaac,
+    tomada comparando cinco tratamentos lado a lado. As palavras da Dra.
+    Pamela não mudaram — só a apresentação.
+    NÃO RESOLVIDO por esta escolha: "Cirurgiã plástica" segue aparecendo
+    duas vezes no hero (linha da função e a própria frase). As opções que
+    removiam a linha de função (A e C) não foram as escolhidas. Continua
+    pendente, e é decisão de cliente.
+
 Observação: em 05/09/2026 todos os arquivos referenciados passaram a existir
 em assets/ (fotos de estúdio, logo extraído do PDF oficial, sete proc-*.jpg e
 sete clinica-*.jpg). Os fallbacks (placeholder de foto, contorno do logo,
@@ -316,11 +326,27 @@ section{padding:3.5rem var(--pad)}
    Instrument Sans TEM itálico real, mas ele não está sendo carregado — se
    algum dia entrar um <em> na página, incluir ital na URL do Google Fonts
    antes, senão o navegador sintetiza e fica torto. */
+/* DESTAQUE DO POSICIONAMENTO — opção "B" da comparação (destaque.html),
+   escolhida pelo Isaac em 05/09/2026. O destaque NÃO vem de peso: vem de
+   caixa alta, entreletra e dos dois filetes champanhe. A Marcellus tem um
+   peso só e este texto é Instrument Sans, que vai até 700 — mesmo assim a
+   decisão foi por moldura, não por negrito pesado.
+   O text-transform é só visual: o texto no HTML continua em caixa mista,
+   então leitor de tela e cópia do usuário saem com a grafia certa.
+   Corpo em --fs-200 (menor que os --fs-300 de antes) DE PROPÓSITO: caixa
+   alta com .12em de entreletra ocupa muito mais linha, e no corpo anterior
+   a frase quebrava em três linhas no celular. */
 .hero-position{
-  font-size:var(--fs-300);
-  font-weight:500;
+  margin:1.6rem auto .25rem;
+  padding:.9rem 0;
+  border-top:1px solid var(--hairline-accent);
+  border-bottom:1px solid var(--hairline-accent);
   color:var(--accent);
-  margin:1.25rem auto .25rem;
+  font-size:var(--fs-200);
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  line-height:1.5;
 }
 .hero .btn{margin-top:1.5rem}
 
