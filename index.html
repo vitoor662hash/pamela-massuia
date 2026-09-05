@@ -15,6 +15,23 @@ BLOQUEIOS — resolver antes de publicar
     [URL PENDENTE], não envolver o crédito em link até o Isaac passar.
     O vermelho da marca (#C8202C) ficou fora de propósito; se o Isaac quiser,
     trocar a custom property --credit-reg no CSS.
+16. Ícones sociais do rodapé — AGUARDANDO os arquivos oficiais de Instagram
+    e Facebook; até lá os links ficam em TEXTO (estado atual). Status em
+    05/09/2026: o ícone oficial do YouTube JÁ ESTÁ em
+    assets/social/yt_icon_white_digital.png (variante monocromática branca
+    Digital, baixada do zip oficial de brand.youtube, arquivo intacto);
+    meta.com/brand/resources segue bloqueado deste ambiente (HTTP 400) — o
+    Isaac baixa lá as variantes monocromáticas de Instagram e Facebook.
+    Especificação quando os três estiverem em assets/social/:
+    - variante monocromática; cor-alvo var(--paper-mute) SEM alterar os
+      arquivos — usar opacity ~0.62 no elemento sobre o fundo --ink, que
+      resulta na mesma cor do paper-mute sem recolorir o asset;
+    - YouTube: o triângulo do play é VAZADO e o fundo aparece através dele —
+      não preencher; sobre o #231F20 o play fica na cor do fundo, correto;
+    - folga livre ao redor ≥ o tamanho do triângulo do play, igual nos três;
+    - tamanho uniforme e alinhamento ÓTICO (não por bounding box — as massas
+      visuais são diferentes);
+    - aria-label em cada link ("Instagram", "Facebook", "YouTube").
 13. Teste em aparelho real (iPhone, Safari e navegador embutido do Instagram)
     — quatro coisas dependem dele: o empilhamento sticky das seções (é onde
     esse efeito notoriamente quebra), o mix-blend-mode das fotos de estúdio,
