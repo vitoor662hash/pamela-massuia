@@ -628,6 +628,25 @@ body > section{background:var(--ink)}
   body > section:nth-of-type(5){z-index:5}
   body > section:nth-of-type(6){z-index:6}
 }
+/* DESKTOP: o empilhamento sai de cena. Motivo MEDIDO em 05/09/2026, a partir
+   de um bug relatado pelo Isaac — no PC os cards de "Procedimentos" apareciam
+   como uma tira fina embaixo do título.
+   O --stick-top é min(0, vh - altura da seção). Seção MAIS BAIXA que a
+   viewport recebe 0 e prende no topo da tela. Medido numa janela de 1710x925:
+   a .procs tem 515px, prende no alto, sobram ~410px de vazio embaixo dela, e
+   a .bio sobe por cima comendo os cards ENQUANTO o vazio ainda está lá. O que
+   se vê é título + tira de foto + buraco. Não é o sticky quebrando: é o
+   efeito aplicado onde ele não faz sentido.
+   No celular isso não acontece do mesmo jeito porque as seções são altas em
+   relação à tela — e é no celular que o efeito foi projetado e aprovado, e é
+   de onde vêm 90% do público. Aqui ele continua intacto.
+   O corte é por largura E ALTURA de propósito: celular deitado (ex.: 900x400)
+   mantém o empilhamento, porque ali as seções seguem mais altas que a
+   viewport. NÃO transformar isto num corte só por largura. */
+@media (min-width:700px) and (min-height:700px){
+  body > section{position:static;box-shadow:none;margin-top:0}
+  footer{margin-top:0}
+}
 footer .section-inner > *{margin:0 0 .5rem}
 footer a{text-decoration:none}
 footer a:hover{color:var(--paper)}
