@@ -88,6 +88,20 @@ D1. Posicionamento do hero trocado em 05/09/2026: sai "De mãe para mães",
     plástica número 1 das empresárias" e passou a "Cirurgiã" — o sujeito é
     ela, não o procedimento. Alteração gramatical, não de posicionamento.
 
+D2. Tipografia trocada em 05/09/2026: sai Fraunces + Manrope, entra
+    Marcellus (display) + Instrument Sans (texto). Decisão do Isaac, tomada
+    olhando cinco pares lado a lado com o mesmo texto, os mesmos corpos e as
+    mesmas cores (página temporária fontes.html, opção "E"). Não é medição:
+    não existe dado de "mais premium", foi escolha visual dele.
+    Consequências assumidas, não descuido:
+    - o "arredondado" da Fraunces (SOFT 50), que era pedido antigo do
+      cliente, deixa de existir — a Marcellus não é variável;
+    - a Marcellus tem um único peso (400) e nenhum itálico; ênfase em título
+      se faz com corpo ou cor, nunca com peso;
+    - a Instrument Sans começa no peso 400, não há texto mais fino que isso.
+    A escala de corpos ficou intacta de propósito: foi nela que a comparação
+    aconteceu.
+
 Observação: em 05/09/2026 todos os arquivos referenciados passaram a existir
 em assets/ (fotos de estúdio, logo extraído do PDF oficial, sete proc-*.jpg e
 sete clinica-*.jpg). Os fallbacks (placeholder de foto, contorno do logo,
@@ -110,7 +124,7 @@ que suma.
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <!-- Geist só no peso 700: é uma linha de crédito no rodapé, não vale puxar
      a família inteira. -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=Geist:wght@700&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@700&family=Instrument+Sans:wght@400..700&family=Marcellus&display=swap" rel="stylesheet">
 
 <style>
 /* ---------- tokens ---------- */
@@ -123,25 +137,34 @@ que suma.
   --hairline:rgba(245,241,234,.10);
   --hairline-accent:rgba(216,195,154,.35);
 
-  /* escala tipográfica — REESCRITA para Fraunces/Manrope (incremento 5).
-     As duas têm altura de x bem maior que a Cormorant, a Manrope em especial:
-     os mesmos papéis pedem corpos menores e medida mais curta, senão tudo
-     parece grande e apertado. */
-  --fs-100:.8125rem;   /* 13 — notas, rodapé, rótulos (Manrope) */
-  --fs-200:.9375rem;   /* 15 — corpo (Manrope) */
-  --fs-300:1.0625rem;  /* 17 — lead, botões (Manrope) */
-  --fs-400:1.375rem;   /* 22 — nome de procedimento no card (Fraunces) */
-  --fs-500:1.75rem;    /* 28 — título do sheet (Fraunces) */
-  --fs-600:2.125rem;   /* 34 — título de seção, com mais presença (Fraunces) */
-  --fs-700:clamp(2.625rem,11vw,3.375rem); /* nome no hero (Fraunces) */
+  /* escala tipográfica — os corpos são os MESMOS desde o incremento 5. A
+     troca de fonte de 05/09/2026 (Fraunces/Manrope -> Marcellus/Instrument
+     Sans) manteve a escala de propósito: foi exatamente nesses corpos que o
+     Isaac comparou os pares e escolheu este. Mexer no corpo agora invalida a
+     comparação em que a decisão foi tomada. */
+  --fs-100:.8125rem;   /* 13 — notas, rodapé, rótulos (Instrument Sans) */
+  --fs-200:.9375rem;   /* 15 — corpo (Instrument Sans) */
+  --fs-300:1.0625rem;  /* 17 — lead, botões (Instrument Sans) */
+  --fs-400:1.375rem;   /* 22 — nome de procedimento no card (Marcellus) */
+  --fs-500:1.75rem;    /* 28 — título do sheet (Marcellus) */
+  --fs-600:2.125rem;   /* 34 — título de seção, com mais presença (Marcellus) */
+  --fs-700:clamp(2.625rem,11vw,3.375rem); /* nome no hero (Marcellus) */
 
-  /* Fraunces SÓ em: nome no hero, títulos de seção, nomes de procedimento
-     nos cards e título do sheet. Todo o resto é Manrope. */
-  --font-display:"Fraunces",Georgia,serif;
-  --font-text:"Manrope",-apple-system,"Segoe UI",Roboto,sans-serif;
+  /* Marcellus SÓ em: nome no hero, títulos de seção, nomes de procedimento
+     nos cards e título do sheet. Todo o resto é Instrument Sans.
+     Marcellus tem UM único peso (400) e nenhum itálico — pedir bold ou
+     itálico dela faz o navegador sintetizar e sai torto. Onde precisar de
+     ênfase num título, a resposta é corpo ou cor, nunca peso.
+     Instrument Sans é variável de 400 a 700: não existe peso abaixo de 400
+     (a Manrope tinha 200-800), então nada de texto fino aqui.
+     Ambas cobrem a acentuação do português — conferido no CSS servido pelo
+     Google Fonts em 05/09/2026: as duas trazem o subset latin (U+0000-00FF,
+     onde estão ã/á/é/í/ó/ú/ç/ê/ô/â) além do latin-ext. */
+  --font-display:"Marcellus",Georgia,serif;
+  --font-text:"Instrument Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
 
   --pad:1.25rem;
-  --measure:32em; /* corpo Manrope 15px fica abaixo de 70 caracteres por linha */
+  --measure:32em; /* corpo Instrument Sans 15px fica abaixo de 70 caracteres por linha */
 }
 
 /* ---------- base ---------- */
@@ -162,13 +185,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 h1,h2,h3{
   font-family:var(--font-display);
-  /* Fraunces variável: SOFT 50 é o arredondado que o cliente pediu (não zerar).
-     WONK 0 EXPLÍCITO — acima de opsz 18 ele liga sozinho, e n/h/m inclinados
-     com terminal em bola estão errados para uma cirurgiã. opsz segue o corpo
-     via font-optical-sizing:auto. */
-  font-optical-sizing:auto;
-  font-variation-settings:"SOFT" 50,"WONK" 0;
-  font-weight:420;
+  /* SOFT/WONK/opsz eram eixos da Fraunces e saíram com ela em 05/09/2026.
+     ATENÇÃO — isso encerra um pedido antigo do cliente: o "arredondado"
+     (SOFT 50) não existe mais, porque a Marcellus não é variável. Foi
+     consequência assumida da escolha do par E pelo Isaac, não descuido.
+     Peso 400 é o único que a Marcellus tem; não pedir outro. */
+  font-weight:400;
   line-height:1.08;
   margin:0;
 }
@@ -277,7 +299,9 @@ section{padding:3.5rem var(--pad)}
   letter-spacing:.08em;
 }
 
-.hero-name{font-size:var(--fs-700);font-weight:380;margin-top:1.75rem}
+/* letter-spacing .005em: é como a Marcellus foi vista e aprovada na
+   comparação de fontes. Peso 400 porque é o único que ela tem. */
+.hero-name{font-size:var(--fs-700);font-weight:400;letter-spacing:.005em;margin-top:1.75rem}
 .hero-role{
   font-size:var(--fs-300);
   color:var(--paper);
@@ -288,8 +312,10 @@ section{padding:3.5rem var(--pad)}
   color:var(--paper-mute);
   margin:.35rem 0 0;
 }
-/* Manrope (Fraunces é só nos quatro pontos de display); sem itálico — a
-   Manrope não tem itálico e o sintético fica torto */
+/* Instrument Sans (Marcellus é só nos quatro pontos de display). A
+   Instrument Sans TEM itálico real, mas ele não está sendo carregado — se
+   algum dia entrar um <em> na página, incluir ital na URL do Google Fonts
+   antes, senão o navegador sintetiza e fica torto. */
 .hero-position{
   font-size:var(--fs-300);
   font-weight:500;
@@ -422,9 +448,7 @@ section{padding:3.5rem var(--pad)}
 .rail-cta{margin-top:1.5rem}
 .card-name{
   font-family:var(--font-display);
-  font-optical-sizing:auto;
-  font-variation-settings:"SOFT" 50,"WONK" 0;
-  font-weight:480;
+  font-weight:400; /* único peso da Marcellus */
   font-size:var(--fs-400); /* conferir se "Abdominoplastia" segue cabendo a cada mudança de corpo/fonte */
   line-height:1.08;
   position:relative;
