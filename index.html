@@ -285,17 +285,47 @@ section{padding:3.5rem var(--pad)}
 .media.is-missing{aspect-ratio:4/5}
 
 /* ---------- hero ---------- */
+/* ALTURA DO HERO — medida, não escolhida no olho (05/09/2026).
+   Sintoma relatado pelo Isaac: no celular o botão do WhatsApp fica longe
+   demais. Medição feita subindo esta própria página num iframe de mesma
+   origem, em 402x780 e 402x700 (Chrome, tamanho de iPhone):
+   - o hero tinha 954px numa tela de 780. A base do botão caía em 912 —
+     132px ABAIXO da dobra. Ninguém via o CTA sem rolar.
+   - dentro dos 954, a foto sozinha ocupava 453px (quase metade).
+   - só apertar espaçamento rendia 49px: o botão continuava 99px abaixo.
+     Não resolvia, foi testado.
+   Com a foto em altura relativa à tela + os espaçamentos abaixo, o hero cai
+   para ~733px em tela de 780 e ~704px em tela de 700, e o botão fica
+   VISÍVEL na chegada nos dois casos.
+   LIMITE CONHECIDO: em tela muito baixa (375x560, iPhone SE dentro do
+   Instagram) não cabe de jeito nenhum — o que não é foto já soma ~450px.
+   Lá o botão continua abaixo da dobra e isso é aceito.
+   RESSALVA: medido no Chrome em tamanho de iPhone, NÃO no aparelho dentro
+   do Instagram, onde a altura útil muda com as barras do app. Confirmar na
+   pendência 13 antes de considerar fechado. */
 .hero{
   padding-top:calc(2.5rem + env(safe-area-inset-top));
+  padding-bottom:2.5rem;
   text-align:center;
 }
 .hero .section-inner{max-width:26rem}
+/* A foto do hero deixa de ter proporção fixa e passa a caber na tela. O
+   object-fit:cover já estava lá, então isto vira recorte, não deformação:
+   a foto inteira não aparece mais. object-position 22% mantém o rosto e as
+   mãos no quadro e corta por baixo, onde a roupa é quase preta e derrete no
+   fundo pelo mesmo lighten. O clamp segura o desktop (teto 420px) e telas
+   muito baixas (piso 220px). Os outros .media da página não mudam. */
+.hero .media img{
+  aspect-ratio:auto;
+  height:clamp(220px,36vh,420px);
+  object-position:50% 22%;
+}
 
 .logo{
   display:block;
   height:44px;
   width:auto;
-  margin:0 auto 2rem;
+  margin:0 auto 1.5rem;
 }
 /* contorno de reserva, exibido pelo onerror enquanto assets/logo.png não chega */
 .logo-placeholder{
@@ -311,7 +341,7 @@ section{padding:3.5rem var(--pad)}
 
 /* letter-spacing .005em: é como a Marcellus foi vista e aprovada na
    comparação de fontes. Peso 400 porque é o único que ela tem. */
-.hero-name{font-size:var(--fs-700);font-weight:400;letter-spacing:.005em;margin-top:1.75rem}
+.hero-name{font-size:var(--fs-700);font-weight:400;letter-spacing:.005em;margin-top:1.25rem}
 .hero-role{
   font-size:var(--fs-300);
   color:var(--paper);
@@ -337,7 +367,7 @@ section{padding:3.5rem var(--pad)}
    alta com .12em de entreletra ocupa muito mais linha, e no corpo anterior
    a frase quebrava em três linhas no celular. */
 .hero-position{
-  margin:1.6rem auto .25rem;
+  margin:1rem auto .25rem;
   padding:.9rem 0;
   border-top:1px solid var(--hairline-accent);
   border-bottom:1px solid var(--hairline-accent);
@@ -348,7 +378,7 @@ section{padding:3.5rem var(--pad)}
   text-transform:uppercase;
   line-height:1.5;
 }
-.hero .btn{margin-top:1.5rem}
+.hero .btn{margin-top:1rem}
 
 /* único momento de movimento da página */
 @media (prefers-reduced-motion:no-preference){
