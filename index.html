@@ -311,14 +311,22 @@ section{padding:3.5rem var(--pad)}
 .hero .section-inner{max-width:26rem}
 /* A foto do hero deixa de ter proporção fixa e passa a caber na tela. O
    object-fit:cover já estava lá, então isto vira recorte, não deformação:
-   a foto inteira não aparece mais. object-position 22% mantém o rosto e as
-   mãos no quadro e corta por baixo, onde a roupa é quase preta e derrete no
-   fundo pelo mesmo lighten. O clamp segura o desktop (teto 420px) e telas
-   muito baixas (piso 220px). Os outros .media da página não mudam. */
+   a foto inteira não aparece mais. object-position 0% ANCORA NO TOPO: o
+   recorte tira só de baixo, onde a roupa é quase preta e derrete no fundo
+   pelo mesmo lighten. O clamp segura o desktop (teto 420px) e telas muito
+   baixas (piso 220px). Os outros .media da página não mudam.
+   POR QUE 0% E NÃO OUTRO VALOR — medido, não escolhido no olho. As duas
+   fotos são 1024x1280 e o fundo é #000 puro, então dá pra achar por pixel
+   a primeira linha com conteúdo: linha 7 de 1280 na foto do hero e linha 9
+   na do retrato. Ou seja, NÃO EXISTE folga acima do cabelo. Qualquer valor
+   acima de 0 come cabeça: no recorte anterior, de 22%, eram 38px cortados
+   do topo no hero e 45px na bio — foi exatamente o que o Isaac viu e
+   relatou. A 0% o enquadramento do alto fica idêntico ao da foto original.
+   NÃO subir esse valor sem foto nova com folga no topo. */
 .hero .media img{
   aspect-ratio:auto;
   height:clamp(220px,36vh,420px);
-  object-position:50% 22%;
+  object-position:50% 0%;
 }
 
 .logo{
@@ -405,11 +413,14 @@ section{padding:3.5rem var(--pad)}
    Com a foto em altura relativa à tela a faixa vai para 200px — medido,
    não estimado. O recorte foi conferido no olho antes de entrar: o corte
    cai abaixo do ombro, onde a roupa preta derrete no fundo pelo lighten,
-   e rosto, brinco e mão continuam no quadro. */
+   e rosto, brinco e mão continuam no quadro.
+   CORREÇÃO em 05/09/2026: o object-position saiu de 22% para 0% pelo mesmo
+   motivo do hero — a 22% o recorte comia 45px do topo, ou seja, o cabelo
+   dela. A medição por pixel está no comentário de .hero .media img. */
 .bio .media img{
   aspect-ratio:auto;
   height:clamp(200px,32vh,400px);
-  object-position:50% 22%;
+  object-position:50% 0%;
 }
 .bio p{color:var(--paper)}
 .bio .media{margin-bottom:1.5rem}
