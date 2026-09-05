@@ -398,6 +398,19 @@ section{padding:3.5rem var(--pad)}
 }
 
 /* ---------- a sua cirurgiã ---------- */
+/* Mesmo tratamento do hero, pelo mesmo motivo e com a mesma medição
+   (05/09/2026, iframe de mesma origem em 402x780). Antes: o botão desta
+   seção ficava inteiro e descoberto por apenas 110px de rolagem, porque a
+   seção tinha 901px numa tela de 780 e a foto sozinha ocupava 453 deles.
+   Com a foto em altura relativa à tela a faixa vai para 200px — medido,
+   não estimado. O recorte foi conferido no olho antes de entrar: o corte
+   cai abaixo do ombro, onde a roupa preta derrete no fundo pelo lighten,
+   e rosto, brinco e mão continuam no quadro. */
+.bio .media img{
+  aspect-ratio:auto;
+  height:clamp(200px,32vh,400px);
+  object-position:50% 22%;
+}
 .bio p{color:var(--paper)}
 .bio .media{margin-bottom:1.5rem}
 .bio-stat{
